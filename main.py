@@ -6,10 +6,13 @@ import argparse as arg
 
 def get_arguments():
     parser = arg.ArgumentParser()
-    parser.add_argument('-m', '--model', type=str, default='False')
-    parser.add_argument('-k', '--kfolds', type=int, default=5)
-    parser.add_argument('--infer', action='store_true')
-    parser.add_argument('--focal', action='store_false')
+    parser.add_argument('-m', '--model', type=str, default='False', 
+        help='Path to load model. Default "False" means no model')
+    parser.add_argument('-k', '--kfolds', type=int, default=5, help='Number of folds')
+    parser.add_argument('--infer', action='store_true', help='infer mode')
+    parser.add_argument('--no-focal', action='store_true', help='Not using focal-loss')
+    parser.add_argument('--no-stop', action='store_true', 
+        help='no stop for early stopping when training model for inference')
     return parser.parse_args()
 
 
@@ -26,7 +29,7 @@ if __name__=='__main__':
     else:
         print('Entering Inference Mode...')
         data_loader = DataLoader(train_val, batch_size=16, shuffle=True, num_workers=4)
-        trainer = Trainer(data_loader, data_loader, verbose=True, focal=args.focal)
+        trainer = Trainer(data_loader, data_loader, verbose=True, focal=args.focal, no_stop=arg.no_stop)
         infer_list = get_data_list(True)
         infer_loader = DataLoader(get_infer(infer_list), batch_size=16, shuffle=False, num_workers=4)
         print('successully load infer dataset')
