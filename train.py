@@ -38,7 +38,7 @@ class Trainer:
             train_loss = self.__train()
             val_loss, tp, tn = self.__eval()[0:3]
             train_losses.append(train_loss)
-            if (self.verbose):
+            if self.verbose:
                 print(f'Epoch: {epoch}/{self.epochs} \
                     - loss: {train_loss:.4f} \
                     - val_loss: {val_loss:.4f} \
@@ -46,6 +46,10 @@ class Trainer:
                     - false-positive: {tn}')
             filename = 'output/checkpoints/'+datetime.now().strftime('%Y-%m-%d-%H_%M_%S')+str(epoch)+'.tar.gz'
             self.early(val_loss, self.model, self.opt, epoch, filename)
+            if self.early.isToStop:
+                if self.verbose:
+                    print("=> Stopped")
+                break
         return plot([train_losses, val_losses], ['Training', 'Validation'], 'Epochs', 'Error', 'Error analysis')
 
 
