@@ -25,7 +25,10 @@ class Trainer:
         self.model = Inception(2)
         self.opt = RMSprop(self.model.parameters(), lr=0.045)
         self.scheduler = ExponentialLR(optimizer=self.opt, gamma=0.94)
-        self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+        self.device = torch.device('cpu')
+        if torch.cuda.is_available():
+            self.device = torch.device('cuda')
+            self.model = self.model.cuda(self.device)
         self.early = EarlyStopping(self.verbose, patience, no_stop)
         self.epochs = epoch
         self.lossf = FocalLoss() if focal else nn.CrossEntropyLoss()
