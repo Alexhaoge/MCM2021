@@ -6,7 +6,7 @@ import argparse as arg
 
 def get_arguments():
     parser = arg.ArgumentParser()
-    parser.add_argument('-m', '--model', type=str, action='store_true')
+    parser.add_argument('-m', '--model', type=str, default='False')
     parser.add_argument('-k', '--kfolds', type=int, default=5)
     parser.add_argument('--infer', action='store_true')
     parser.add_argument('--focal', action='store_false')
@@ -15,6 +15,10 @@ def get_arguments():
 
 if __name__=='__main__':
     args = get_arguments()
+    if args.model != 'False':
+        import os
+        if not os.path.exists(args.model):
+            raise FileNotFoundError
     train_val = get_total()
     print('successully load train_val dataset')
     if not args.infer:
