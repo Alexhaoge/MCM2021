@@ -10,7 +10,7 @@ def get_arguments():
         help='Path to load model. Default "False" means no model')
     parser.add_argument('-k', '--kfolds', type=int, default=5, help='Number of folds')
     parser.add_argument('--infer', action='store_true', help='infer mode')
-    parser.add_argument('--no-focal', action='store_true', help='Not using focal-loss')
+    parser.add_argument('--focal', action='store_false', help='Use focal-loss')
     parser.add_argument('--no-stop', action='store_true', 
         help='no stop for early stopping when training model for inference')
     return parser.parse_args()

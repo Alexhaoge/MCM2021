@@ -133,3 +133,4 @@ dmypy.json
 data/
 output/
 !output/*.csv
+nohup.out
