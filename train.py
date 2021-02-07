@@ -13,6 +13,7 @@ class Trainer:
         train_loader: data.DataLoader,
         val_loader: data.DataLoader,
         epoch: int = 200,
+        learning_rate: float = 0.001,
         verbose: bool = False,
         patience: int = 16,
         no_stop: bool = False,
@@ -22,7 +23,7 @@ class Trainer:
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.model = Inception(2)
-        self.opt = RMSprop(self.model.parameters(), lr=0.001)
+        self.opt = RMSprop(self.model.parameters(), lr=learning_rate)
         self.scheduler = ExponentialLR(optimizer=self.opt, gamma=0.94)
         self.device = torch.device('cpu')
         if torch.cuda.is_available():
@@ -107,7 +108,12 @@ class Trainer:
         return outputs.numpy()
 
 
-def cross_validation(ds: data.TensorDataset, K: int = 3, batch: int = 16, focal: bool = True):
+def cross_validation(
+        ds: data.TensorDataset, 
+        K: int = 3, batch: int = 16,
+        learning_rate: float = 0.001,
+        focal: bool = True
+    ):
     print('Total {} images, {} folds, batch size {}, use focal loss: {}'.format(len(ds), K, batch, focal))
     assert isinstance(ds, data.TensorDataset)
     size = len(ds) // K
@@ -124,7 +130,7 @@ def cross_validation(ds: data.TensorDataset, K: int = 3, batch: int = 16, focal:
                 train = folds[j] if train is None else train+folds[j]
         train_loader = data.DataLoader(train, batch_size=batch, num_workers=4)
         val_loader = data.DataLoader(folds[i], batch_size=batch, num_workers=4)
-        trainer = Trainer(train_loader, val_loader, focal=focal, verbose=True)
+        trainer = Trainer(train_loader, val_loader, learning_rate=learning_rate, focal=focal, verbose=True)
         print('dataloader and trainer created, start fitting')
         plot_path = trainer.fit()
         print('start evaluate')

@@ -6,6 +6,7 @@ import argparse as arg
 
 def get_arguments():
     parser = arg.ArgumentParser()
+    parser.add_argument('-l', '--lr', type=float, default=0.0001)
     parser.add_argument('-m', '--model', type=str, default='False', 
         help='Path to load model. Default "False" means no model')
     parser.add_argument('-k', '--kfolds', type=int, default=5, help='Number of folds')
@@ -25,11 +26,11 @@ if __name__=='__main__':
     train_val = get_total()
     print('successully load train_val dataset')
     if not args.infer:
-        report = cross_validation(train_val, K=args.kfolds, focal=args.focal)
+        report = cross_validation(train_val, K=args.kfolds, learning_rate=args.lr, focal=args.focal)
     else:
         print('Entering Inference Mode...')
         data_loader = DataLoader(train_val, batch_size=16, shuffle=True, num_workers=4)
-        trainer = Trainer(data_loader, data_loader, verbose=True, focal=args.focal, no_stop=arg.no_stop)
+        trainer = Trainer(data_loader, data_loader, learning_rate=args.lr, verbose=True, focal=args.focal, no_stop=arg.no_stop)
         infer_list = get_data_list(True)
         infer_loader = DataLoader(get_infer(infer_list), batch_size=16, shuffle=False, num_workers=4)
         print('successully load infer dataset')

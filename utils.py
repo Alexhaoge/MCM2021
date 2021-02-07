@@ -117,7 +117,7 @@ def plot(data, columns_name, x_label, y_label, title, inline=False):
     plot.set_title(title, fontsize=16)
     if not inline:
         m = md5()
-        m.update(str(time.time()))
+        m.update(str(time.time()).encode('utf-8'))
         filename = 'output/plot/' + m.hexdigest() + '.png'
         plot.figure.savefig(filename, bbox_inches='tight')
         return filename
