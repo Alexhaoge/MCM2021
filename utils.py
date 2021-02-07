@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
+import torch
 import os
 
 classes = ['hornet']   # 改成自己的类别
@@ -53,3 +54,42 @@ def get_filelist(dir, Filelist=[]):
     if os.path.isfile(dir):
         Filelist.append(dir)
     return Filelist
+
+
+class EarlyStopping:
+    """
+    Early stops the training if validation loss doesn't improve after a given patience
+    """
+
+    def __init__(self, verbose, patience, no_stop):
+        self.verbose = verbose
+        self.patience = patience
+        self.best_loss = float('inf')
+        self.counter = 0
+        self.isToStop = False
+        self.enable_stop = not no_stop
+
+    def __call__(self, val_loss, model, optimizer, epoch, filename):
+        is_best = bool(val_loss < self.best_loss)
+        if is_best:
+            self.best_loss = val_loss
+            self.__save_checkpoint(self.best_loss, model,
+                                   optimizer, epoch, filename)
+            if self.verbose:
+                print(filename)
+            self.counter = 0
+        elif self.enable_stop:
+            self.counter += 1
+            if self.verbose:
+                print(f'=> Early stopping counter: {self.counter} out of {self.patience}')
+            if self.counter >= self.patience:
+                self.isToStop = True
+
+    def __save_checkpoint(self, loss, model, optimizer, epoch, filename):
+        state = {'model_state_dict': model.state_dict(),
+                 'optimizer_state_dict': optimizer.state_dict(),
+                 'epoch': epoch,
+                 'loss': loss}
+        torch.save(state, filename)
+        if self.verbose:
+            print('=> Saving a new best')
