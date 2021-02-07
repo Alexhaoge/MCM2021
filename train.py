@@ -46,7 +46,7 @@ class Trainer:
                     - true-positive: {tp} \
                     - false-positive: {tn}')
             filename = 'output/checkpoints/'+datetime.now().strftime('%Y-%m-%d-%H_%M_%S')+str(epoch)+'.tar.gz'
-            self.early(val_loss, self.model, self.optimizer, epoch, filename)
+            self.early(val_loss, self.model, self.opt, epoch, filename)
 
 
     def __train(self) -> float:
