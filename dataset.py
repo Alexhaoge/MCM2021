@@ -5,6 +5,7 @@ from PIL import Image
 import torch
 from torch.utils.data import DataLoader, TensorDataset, ConcatDataset
 from torchvision import transforms
+import os
 
 
 def get_dataset(img_list: pd.DataFrame, size: int = 299) -> TensorDataset:
@@ -23,8 +24,8 @@ def get_dataset(img_list: pd.DataFrame, size: int = 299) -> TensorDataset:
 
 def get_dataset_aug(
         aug_list: pd.DataFrame, size: int = 299, 
-        times: int = 20, 
-        save: bool = True
+        times: int = 20,
+        new: bool = False
     ) -> TensorDataset:
     id = transforms.Lambda(lambda x: x)
     FlipAndRotate = [
@@ -60,6 +61,11 @@ def get_dataset_aug(
     for i, id in zip(aug_list.index, aug_list['id']):
         img = Image.open('data/subimg/image/'+str(id)+'.png')
         for j in range(times):
+            imd_id = i*times+j
+            img_path = 'data/subimg/aug/'+str(imd_id)+'.png'
+            if os.path.exists(img_path) and (not new):
+                X[imd_id] = transforms.functional.pil_to_tensor(Image.open(img_path))
+                continue
             pipe = transforms.Compose([
                 transforms.RandomChoice(FlipAndRotate),
                 transforms.RandomChoice(Crop),
@@ -67,13 +73,10 @@ def get_dataset_aug(
                 transforms.Resize((size, size)),
                 transforms.ToTensor()
             ])
-            X[i*times+j] = pipe(img)
-    if save:
-        tran = transforms.ToPILImage()
-        for i in range(n):
-            tran(X[i]).save('data/subimg/aug/'+str(i)+'.png')     
+            X[imd_id] = pipe(img)
+            transforms.functional.to_pil_image(X[imd_id]).save('data/subimg/aug/'+str(i)+'.png')
     return TensorDataset(X, y)
-            
+
 
 def get_infer(infer_list: pd.DataFrame, size: int = 299) -> TensorDataset:
     n = len(infer_list)
@@ -87,7 +90,7 @@ def get_infer(infer_list: pd.DataFrame, size: int = 299) -> TensorDataset:
     return TensorDataset(X)
 
 
-def get_data_list(infer=False) -> Tuple[pd.DataFrame, pd.DataFrame]:
+def get_data_list(infer=False):
     img_list = pd.read_csv('data/subimg/list.csv')
     if infer:
         img_list = img_list[img_list['class'] == -1]

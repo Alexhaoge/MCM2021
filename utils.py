@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
+from matplotlib.ticker import MaxNLocator
+import pandas as pd
 import torch
 import os
+from hashlib import md5
+import time
 
-classes = ['hornet']   # 改成自己的类别
+classes = ['hornet']
 
 def convert(size, box):
     dw = 1. / (size[0])
@@ -93,3 +97,27 @@ class EarlyStopping:
         torch.save(state, filename)
         if self.verbose:
             print('=> Saving a new best')
+
+
+def plot(data, columns_name, x_label, y_label, title, inline=False):
+    df = pd.DataFrame(data).T
+    df.columns = columns_name
+    df.index += 1
+    plot = df.plot(linewidth=2, figsize=(15, 8), color=['darkgreen', 'orange'], grid=True)
+    train = columns_name[0]
+    val = columns_name[1]
+    # find position of lowest validation loss
+    idx_min_loss = df[val].idxmin()
+    plot.axvline(idx_min_loss, linestyle='--', color='r', label='Best epoch')
+    plot.legend()
+    plot.set_xlim(0, len(df.index)+1)
+    plot.xaxis.set_major_locator(MaxNLocator(integer=True))
+    plot.set_xlabel(x_label, fontsize=12)
+    plot.set_ylabel(y_label, fontsize=12)
+    plot.set_title(title, fontsize=16)
+    if not inline:
+        m = md5()
+        m.update(str(time.time()))
+        filename = 'output/plot/' + m.hexdigest() + '.png'
+        plot.figure.savefig(filename, bbox_inches='tight')
+        return filename

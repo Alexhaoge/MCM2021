@@ -1,11 +1,10 @@
 from typing import Tuple
-import dataset
 from model import Inception, FocalLoss
 from torch.optim import RMSprop
 from torch.optim.lr_scheduler import ExponentialLR
 from torch import nn
 import torch
-from utils import EarlyStopping
+from utils import EarlyStopping, plot
 from torch.utils import data
 from datetime import datetime
 
@@ -23,7 +22,7 @@ class Trainer:
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.model = Inception(2)
-        self.opt = RMSprop(self.model.parameters(), lr=0.045)
+        self.opt = RMSprop(self.model.parameters(), lr=0.001)
         self.scheduler = ExponentialLR(optimizer=self.opt, gamma=0.94)
         self.device = torch.device('cpu')
         if torch.cuda.is_available():
@@ -33,7 +32,7 @@ class Trainer:
         self.epochs = epoch
         self.lossf = FocalLoss() if focal else nn.CrossEntropyLoss()
 
-    def fit(self):
+    def fit(self) -> str:
         train_losses, val_losses = [], []
         for epoch in range(1, self.epochs+1):
             train_loss = self.__train()
@@ -47,6 +46,7 @@ class Trainer:
                     - false-positive: {tn}')
             filename = 'output/checkpoints/'+datetime.now().strftime('%Y-%m-%d-%H_%M_%S')+str(epoch)+'.tar.gz'
             self.early(val_loss, self.model, self.opt, epoch, filename)
+        return plot([train_losses, val_losses], ['Training', 'Validation'], 'Epochs', 'Error', 'Error analysis')
 
 
     def __train(self) -> float:
@@ -79,7 +79,7 @@ class Trainer:
                 fn += ((output[:,0]>output[:,1])&(target==0)).sum().item()
         return loss_sum/len(self.val_loader), tp, tn, fp, fn
 
-    def eval(self):
+    def eval(self) -> dict:
         res = self.__eval()
         return {
             'loss_f': self.lossf.__str__(),
@@ -111,7 +111,7 @@ def cross_validation(ds: data.TensorDataset, K: int = 3, batch: int = 16, focal:
     size_list[0] += len(ds) % K
     folds = data.random_split(ds, size_list, torch.Generator().manual_seed(59))
     import pandas as pd
-    result = pd.DataFrame(columns=['loss_f', 'loss', 'tp', 'tn', 'fp', 'fn'])
+    result = pd.DataFrame(columns=['loss_f', 'loss', 'tp', 'tn', 'fp', 'fn', 'plot'])
     for i in range(K):
         print('=======> Fold '+str(i)+' <========')
         train = None
@@ -122,9 +122,12 @@ def cross_validation(ds: data.TensorDataset, K: int = 3, batch: int = 16, focal:
         val_loader = data.DataLoader(folds[i], batch_size=batch, num_workers=4)
         trainer = Trainer(train_loader, val_loader, focal=focal, verbose=True)
         print('dataloader and trainer created, start fitting')
-        trainer.fit()
+        plot_path = trainer.fit()
         print('start evaluate')
-        result.append(trainer.eval(), ignore_index=True)
+        eval_res = trainer.eval()
+        eval_res['plot'] = plot_path
+        result.append(eval_res, ignore_index=True)
     filename = 'output/'+datetime.now().strftime('%d-%H_%M_%S') + '-repost.csv'
     result.to_csv(filename)
     return result
+
