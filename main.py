@@ -11,7 +11,7 @@ def get_arguments():
         help='Path to load model. Default "False" means no model')
     parser.add_argument('-k', '--kfolds', type=int, default=5, help='Number of folds')
     parser.add_argument('--infer', action='store_true', help='infer mode')
-    parser.add_argument('--focal', action='store_false', help='Use focal-loss')
+    parser.add_argument('--no-focal', action='store_false', help='No using focal-loss')
     parser.add_argument('--no-stop', action='store_true', 
         help='no stop for early stopping when training model for inference')
     return parser.parse_args()
@@ -26,11 +26,11 @@ if __name__=='__main__':
     train_val = get_total()
     print('successully load train_val dataset')
     if not args.infer:
-        report = cross_validation(train_val, K=args.kfolds, learning_rate=args.lr, focal=args.focal)
+        report = cross_validation(train_val, K=args.kfolds, learning_rate=args.lr, focal=args.no_focal)
     else:
         print('Entering Inference Mode...')
         data_loader = DataLoader(train_val, batch_size=16, shuffle=True, num_workers=4)
-        trainer = Trainer(data_loader, data_loader, learning_rate=args.lr, verbose=True, focal=args.focal, no_stop=arg.no_stop)
+        trainer = Trainer(data_loader, data_loader, learning_rate=args.lr, verbose=True, focal=args.no_focal, no_stop=arg.no_stop)
         infer_list = get_data_list(True)
         infer_loader = DataLoader(get_infer(infer_list), batch_size=16, shuffle=False, num_workers=4)
         print('successully load infer dataset')
