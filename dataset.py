@@ -100,11 +100,11 @@ def get_data_list(infer=False):
     augment_list = img_list[(img_list.FileName.str.startswith('positive'))|(img_list['class']==1)]
     return img_list, augment_list
 
-def get_total() -> TensorDataset:
+def get_total(times=40, new=False) -> TensorDataset:
     origin, aug_list = get_data_list()
     print('image list get')
     ds = get_dataset(origin)
-    aug = get_dataset_aug(aug_list)
+    aug = get_dataset_aug(aug_list, times=times, new=new)
     return TensorDataset(
         torch.cat((ds.tensors[0], aug.tensors[0])),
         torch.cat((ds.tensors[1], aug.tensors[1]))

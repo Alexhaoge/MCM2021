@@ -45,7 +45,7 @@ class Trainer:
                     - loss: {train_loss:.4f} \
                     - val_loss: {val_loss:.4f} \
                     - true-positive: {tp} \
-                    - false-positive: {tn}')
+                    - true-negative: {tn}')
             filename = 'output/checkpoints/'+datetime.now().strftime('%Y-%m-%d-%H_%M_%S')+str(epoch)+'.tar.gz'
             self.early(val_loss, self.model, self.opt, epoch, filename)
             if self.early.isToStop:
@@ -139,7 +139,7 @@ def cross_validation(
         eval_res['plot'] = plot_path
         print('Eval Result\n{}'.format(eval_res))
         result = result.append(eval_res, ignore_index=True)
-    filename = 'output/'+datetime.now().strftime('%d-%H_%M_%S') + '-repost.csv'
+    filename = 'output/'+datetime.now().strftime('%d-%H_%M_%S') + '-report.csv'
     result.to_csv(filename)
     return result
 

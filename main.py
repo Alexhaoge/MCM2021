@@ -8,14 +8,17 @@ import os
 def get_arguments():
     parser = arg.ArgumentParser()
     parser.add_argument('-c', '--cuda', type=int, default=0, help='The number of GPU to use')
-    parser.add_argument('-l', '--lr', type=float, default=0.0001)
+    parser.add_argument('-t', '--times', type=int, default=40, help='image augmentation rate')
+    parser.add_argument('-l', '--lr', type=float, default=0.0001, help='learning rate')
     parser.add_argument('-m', '--model', type=str, default='False', 
-        help='Path to load model. Default "False" means no model')
+                        help='Path to load model. Default "False" means no model')
     parser.add_argument('-k', '--kfolds', type=int, default=5, help='Number of folds')
     parser.add_argument('--infer', action='store_true', help='infer mode')
     parser.add_argument('--no-focal', action='store_false', help='No using focal-loss')
     parser.add_argument('--no-stop', action='store_true', 
-        help='no stop for early stopping when training model for inference')
+                        help='no stop for early stopping when training model for inference')
+    parser.add_argument('--new-augment', action='store_true', 
+                        help='Whether to generate new augmentation')
     return parser.parse_args()
 
 
@@ -25,7 +28,7 @@ if __name__=='__main__':
     if args.model != 'False':
         if not os.path.exists(args.model):
             raise FileNotFoundError('model not found')
-    train_val = get_total()
+    train_val = get_total(times=args.times, new=args.new_augment)
     print('successully load train_val dataset')
     if not args.infer:
         report = cross_validation(train_val, K=args.kfolds, learning_rate=args.lr, focal=args.no_focal)
