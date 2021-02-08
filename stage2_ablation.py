@@ -15,7 +15,6 @@ def LRGSCV_without_ADSYN(ds: pd.DataFrame):
         #     'lr__solver': ['liblinear'],
         # },
         {
-            'ovs__sampling_strategy': [0.25, 0.5, 1],
             'lr__penalty': ['l1'],
             'lr__C': [0.001, 0.01, 0.1, 1, 10, 100],
             'lr__fit_intercept': [True, False],
@@ -23,7 +22,6 @@ def LRGSCV_without_ADSYN(ds: pd.DataFrame):
             'lr__solver': ['liblinear'],
         },
         {
-            'ovs__sampling_strategy': [0.25, 0.5, 1],
             'lr__penalty': ['l2'],
             'lr__C': [0.001, 0.01, 0.1, 1, 10, 100],
             'lr__fit_intercept': [True, False],
@@ -31,7 +29,6 @@ def LRGSCV_without_ADSYN(ds: pd.DataFrame):
             'lr__solver': ['liblinear', 'lbfgs', 'sag']
         },
         {
-            'ovs__sampling_strategy': [0.25, 0.5, 1],
             'lr__penalty': ['elasticnet'],
             'lr__C': [0.001, 0.01, 0.1, 1, 10, 100],
             'lr__fit_intercept': [True, False],
