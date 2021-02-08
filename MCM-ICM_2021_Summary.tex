@@ -13,6 +13,7 @@
 % and replace 1111111 with your Team Control Number
 \newcommand{\Problem}{C}
 \newcommand{\Team}{2103994}
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{newtxtext}
@@ -63,8 +64,7 @@
 % Replace the text from here ...
 
 \begin{center}
-	\large\textbf{  { Data-Driven Model for Asian Hornet Detection\\
-			--with imbalanced and limited dataset}}
+	\large\textbf{  { Data-Driven Model for Asian Hornet Detection with \\ imbalanced and limited dataset}}
 	\end{center}
 \begin{abstract}
 
@@ -99,17 +99,11 @@ Our framework shows a strong accuracy, robustness. It can be easily implemented 
 \section{Introduction}
 \subsection{Problem Background}
 \subsubsection{Asian Giant Hornet Invading  }
-Vespa mandarinia is the largest species of hornet in the world, and the occurrence of the nest was 
-alarming. Additionally, the giant hornet is a predator of European honeybees, invading and 
-destroying their nests. A small number of the hornets are capable of destroying a whole colony 
-of European honeybees in a short time. At the same time, they are voracious predators of other 
-insects that are considered agricultural pests.
+Vespa mandarinia is the largest species of hornet in the world, and the occurrence of the nest was alarming. Additionally, the giant hornet is a predator of European honeybees, invading and destroying their nests. A small number of the hornets are capable of destroying a whole colony of European honeybees in a short time. At the same time, they are voracious predators of other insects that are considered agricultural pests.
 
-In September 2019, a colony of Vespa mandarinia (also known as the Asian giant hornet) was 
-discovered on Vancouver Island in British Columbia, Canada. The nest was quickly destroyed, 
-but the news of the event spread rapidly throughout the area. 
+In September 2019, a colony of Vespa mandarinia (also known as the Asian giant hornet) was discovered on Vancouver Island in British Columbia, Canada. The nest was quickly destroyed, but the news of the event spread rapidly throughout the area. 
 
-From the first report of Asian giant hornets received, the public has played a critical role in the detection of Asian giant hornets in the Pacific Northwest. Washington State Department of Agriculture(WSDA)  has set up platforms\cite{fb} to collect informations from the  public and set traps to get hornets.  
+From the first report of Asian giant hornets received, the public has played a critical role in the detection of Asian giant hornets in the Pacific Northwest. Washington State Department of Agriculture(WSDA)  has set up platforms\upcite{fb} to collect informations from the  public and set traps to get hornets.  
  
 \subsubsection{Asian Giant Hornet  }
 \begin{figure}[!htbp]
@@ -117,20 +111,20 @@ From the first report of Asian giant hornets received, the public has played a c
 	\centering
 	\begin{minipage}{8cm}
 		\includegraphics[width=7cm,height=7cm]{./pictures/dist0.png}
-		\caption{ Asian Giant Hornet Detections\cite{website}}\label{nt}
+		\caption{ Asian Giant Hornet Detections\upcite{website}}\label{nt}
 	\end{minipage}
 	\begin{minipage}{8cm}
 		\includegraphics[width=7cm,height=7cm]{./pictures/wikiintro.jpg}
-		\caption{\emph{Vespa mandarinia}\cite{wiki}}\label{nt}
+		\caption{\emph{Vespa mandarinia}\upcite{wiki}}\label{nt}
 	\end{minipage}
 	
 \end{figure}
 
 \textbf{Name}
-\begin{itemize}
-	\item Common name:  Asian giant hornet, sparrow wasp, murder hornet
-	\item Scientific name: Vespa mandarinia Smith, 1852
-\end{itemize}
+
+Common name:  Asian giant hornet, sparrow wasp, murder hornet
+
+Scientific name: Vespa mandarinia Smith, 1852
 
 \textbf{Range of Activity }
 
@@ -520,20 +514,20 @@ As is shown in Figure\protect\ref{u=tsne},all these features satisfied \textbf{M
 
 The only problem is that the positive samples are too scarce, so we need to over-sample them. The most intuitive method is randomly repeat those positive samples with techniques like Bootstrap and this will not change the space distribution of them, but actually they are too concentrated on one point and our classifier may lay down the border anywhere between two clusters, which is not desired. What's more, slight noices will prevent over-fitting and help increase the robustness of our model.
 
-we introduce \textbf{ADASYN }for over-sampling for we want more noise to train the model. It focuses on generating minority class sample near the border of the minority class and majority class. In this problem, it can strengthen the border near positive and negative samples.
+we introduce \textbf{ADASYN}(Adaptive Synthetic Sampling)for over-sampling for we want more noise to train the model. It focuses on generating minority class sample near the border of the minority class and majority class. In this problem, it can strengthen the border near positive and negative samples.
 
 
 Smote algorithm contains three steps:
 \begin{enumerate}
 	\item For everyone in the positive sample, get its k-neighbor positive points(by Euclidean distance )
 	\item Choose sampling ratio n. For each positive sample x, selected n points from the k points in the first step for $x_k,k=1,2,...,n$. 
-	\item: For each $x_n$, create new point:$x_{new}=x+rand(0,1)(x-x_n)$
+	\item: For each $x_n$, create new point: $x_{new}=x+\epsilon(x-x_n), where \epsilon \sim U(0,1)$
 \end{enumerate}
 
 Then, we get new points added to our samples.
 
 \subsubsection{Logistic Regression}
-After we do all the works above, we do \textbf{logistic regression} to evaluate all the features and set up a model to classify the records. And the model of logistic regression is showed below:
+We conduct \textbf{logistic regression} to evaluate all the features and set up a model to classify the records. And the model of logistic regression is showed below:
 
 \begin{equation}
 y=\frac{1}{1+e^{-z}},\qquad z=\omega^Tx+b 
@@ -542,8 +536,8 @@ y=\frac{1}{1+e^{-z}},\qquad z=\omega^Tx+b
 	$\omega,b:parameter,\qquad y:the\, probability\, to \,be\, positive$
 \end{center}
 
-\section{Task 3:Classify Unverified}
-Using the model in problem 2, we do the same feature process and use the model trained by negative and positive data to classified whether or not the unverified record is Asian Giant Hornet. We use the model to \textbf{predict the probabilty of the unverified points to be positive.}
+\section{Task 3: Classify Unverified Reports}
+Using the model in problem 2, we conduct the same process to calculate the features and take all the verified reports as the training dataset to fit the two-stage model. We use the model to \textbf{predict the probabilty of the unverified points to be positive}. Output of each stage can be adjusted to a fraction between 0 and 1, indicating the likelihood of the current predicting report is an Asian Giant Hornet sighting. 
 \subsection{Predict Result}
 
 \begin{figure}[H]
@@ -566,7 +560,7 @@ Using the model in problem 2, we do the same feature process and use the model t
 Figure \ref{prob} has shown the probability we get through the model in task two.And the other two pictures show the distribution of positive sample after add the unverified sample whose has more than 0.75 probability to be positive.
 
 
-\section{Task 4:Model Update}
+\section{Task 4: Model Update}
 Considering the model is complex and the training data is huge, it would spend great long time and quite large space to retrain the model. So when construct the model when have considered this problem to guarantee \textbf{online learning},that means we can update our model given a new sample in a quite short time. So \textbf{we can tune the model as soon as new sample comes in}.
 
 The adjustment of model can be divided into two parts:
@@ -577,7 +571,7 @@ The adjustment of model can be divided into two parts:
 \subsection{Feature Engineering Part}
 \begin{itemize}
 	\item \textbf{Longitude ,Latitude and Date}:For these three index we only need to do: $\hat{x}=e^{-(x-x_{1^{st}positive})},x=longitude/latitude/date$. Then, we can get coding result.
-	\item \textbf{Video and Image}:For video,we only need to do the same: scene detection and video keyframes to transfer a video into some images. Then, for
+	\item \textbf{Video and Image}: For video,we only need to do the same: scene detection and video keyframes to transfer a video into some images. Then, for
 	\item \textbf{Yolo} has trained well and can get sample box automatically, and when the "Lab Status" is postive, it will be augmented as well.
 	\item \textbf{Text}To deal with the notes,when we do \textbf{n-grams}, we have set up dictionary to the coding to the most frequent 3000 words and phrases. So when new sentence comes in, we only need to code the sentence by the coding dictionary.
 \end{itemize}
@@ -598,7 +592,7 @@ There are mainly three classification model in the overall process:
 
 Between these Inception V4 is much more complicated and spends much more time to train.  So for this part, we choose to keep most of the net fixed and just adjust weights of the end of the net: softmax layer. So the \textbf{fine-tune} would make the result easier to converge and save more time.
 
-\subsubsection{Optimize:FTRL}
+\subsubsection{Online optimizer: FTRL}
 \begin{table}[H]
 	\begin{center}
 		\caption{Notations}
@@ -634,9 +628,7 @@ After we treat the new report as feature engineering part shows, we send these d
 
 
 
-\section{Task 5:Hornet in Washington State}
-
-
+\section{Task 5: Hornet in Washington State}
 
 
 
