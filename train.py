@@ -54,7 +54,6 @@ class Trainer:
                 break
         return plot([train_losses, val_losses], ['Training', 'Validation'], 'Epochs', 'Error', 'Error analysis')
 
-
     def __train(self) -> float:
         self.model.train()
         epoch_loss = .0
