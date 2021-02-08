@@ -134,3 +134,9 @@ data/
 output/
 !output/*.csv
 nohup.out
+
+*.log
+*.aux
+*.synctex.gz
+*.toc
+MCM-ICM_2021_Summary.pdf
