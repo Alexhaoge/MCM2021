@@ -1,5 +1,5 @@
 from torch.utils.data.dataloader import DataLoader
-from dataset import get_data_list, get_infer, get_total
+from dataset import get_data_list, get_infer, get_total, get_dataset
 from train import *
 import argparse as arg
 import os
@@ -61,7 +61,13 @@ if __name__=='__main__':
             plot = trainer.fit()
             print('fit complete')
         infer_res = trainer.infer(infer_loader)
+        real_list = get_data_list()[0]
+        real = get_dataset(real_list)
+        real_loader = DataLoader(real, args.batch, shuffle=False, num_workers=4)
+        real_infer = trainer.infer(real_loader)
         print('infer complete')
         infer_list['0'] = infer_res[:,0]
         infer_list['1'] = infer_res[:,1]
-        infer_list.to_csv('output/infer.csv')
+        real_list['1'] = real_infer[:,1]
+        real_list = real_list.append(infer_list, ignore_index=True)
+        real_list.to_csv('output/real_infer.csv')

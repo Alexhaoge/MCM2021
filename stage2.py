@@ -4,6 +4,7 @@ from sklearn.linear_model import LogisticRegressionCV, LogisticRegression
 
 def get_data():
     data = pd.read_csv('data/textprocess.csv')
+    ref_data = pd.read_csv('output/infer.csv')
     smote_enn = SMOTE(random_state=0)
     smote_enn.fit_sample()
 
