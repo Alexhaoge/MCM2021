@@ -192,7 +192,8 @@ def LRGSCV(ds: pd.DataFrame):
     file.write('start refit')
     ovs.set_params(sampling_strategy=para['ovs__sampling_strategy'])
     lr = LogisticRegressionCV(
-        Cs=[para['lr__C'], 0.002, 0.02, 0.05, 0.2, 0.3, 0.5, 0.75, 1.2, 1.5, 2, 5, 15, 50],
+        Cs=[para['lr__C'], 0.002, 0.02, 0.05, 0.2, 0.3, 0.5, 0.75, 1.2, 1.5, 2, 5, 15, 50]
+        + list(np.arange(0.8, 1.2, 0.02)),
         cv=5, n_jobs=-1, penalty=para['lr__penalty'],
         solver=para['lr__solver'], max_iter=200,
         class_weight=para['lr__class_weight']
@@ -217,7 +218,7 @@ def LRGSCV(ds: pd.DataFrame):
     file.write('\ntrain_cm:\n')
     file.write(cm.__str__())
     plot_curve(best_model, Xtrain, ytrain, log_dir + 'roc.png', True)
-    plot_curve(best_model, Xtrain, ytrain, log_dir + 'pr.png', True)
+    plot_curve(best_model, Xtrain, ytrain, log_dir + 'pr.png', False)
     file.close()
     return gsCV
 
