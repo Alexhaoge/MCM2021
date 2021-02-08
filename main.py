@@ -24,7 +24,7 @@ if __name__=='__main__':
     os.environ["CUDA_VISIBLE_DEVICES"] = str(args.cuda)
     if args.model != 'False':
         if not os.path.exists(args.model):
-            raise FileNotFoundError
+            raise FileNotFoundError('model not found')
     train_val = get_total()
     print('successully load train_val dataset')
     if not args.infer:
@@ -36,7 +36,7 @@ if __name__=='__main__':
         infer_list = get_data_list(True)
         infer_loader = DataLoader(get_infer(infer_list), batch_size=16, shuffle=False, num_workers=4)
         print('successully load infer dataset')
-        if args.model:
+        if args.model != 'False':
             map_location = 'cuda:0' if torch.cuda.is_available() else 'cpu'
             trainer.model._load_from_state_dict(torch.load(args.model, map_location))
             print('successully load model checkpoints')

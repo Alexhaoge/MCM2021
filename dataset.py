@@ -81,11 +81,11 @@ def get_dataset_aug(
 def get_infer(infer_list: pd.DataFrame, size: int = 299) -> TensorDataset:
     n = len(infer_list)
     tran = transforms.Compose([
-        transforms.Resize(size),
+        transforms.Resize((size,size)),
         transforms.ToTensor()
     ])
     X = torch.empty((n, 3, size, size))
-    for i, id in zip(infer_list.index, infer_list['id']):
+    for i, id in enumerate(infer_list['id']):
         X[i] = tran(Image.open('data/subimg/image/'+str(id)+'.png'))
     return TensorDataset(X)
 
