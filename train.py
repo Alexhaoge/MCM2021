@@ -105,8 +105,8 @@ class Trainer:
                 if outputs is None:
                     outputs = output
                 else:
-                    torch.cat([outputs, outputs])
-        return outputs.numpy()
+                    outputs = torch.cat([outputs, output])
+        return outputs.cpu().numpy()
 
 
 def cross_validation(

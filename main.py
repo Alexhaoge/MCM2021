@@ -55,7 +55,7 @@ if __name__=='__main__':
             map_location = 'cuda:0' if torch.cuda.is_available() else 'cpu'
             state = torch.load(args.model, map_location)
             trainer.model.load_state_dict(state['model_state_dict'])
-            trainer.lossf.load_state_dict(state['loss_statie_dict'])
+            trainer.lossf.load_state_dict(state['loss_state_dict'])
             print('successully load model checkpoints')
         else:
             plot = trainer.fit()
