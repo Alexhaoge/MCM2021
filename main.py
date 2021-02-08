@@ -40,8 +40,9 @@ if __name__=='__main__':
             map_location = 'cuda:0' if torch.cuda.is_available() else 'cpu'
             trainer.model._load_from_state_dict(torch.load(args.model, map_location))
             print('successully load model checkpoints')
-        plot = trainer.fit()
-        print('fit complete')
+        else:
+            plot = trainer.fit()
+            print('fit complete')
         infer_res = trainer.infer(infer_loader)
         print('infer complete')
         infer_list['0'] = infer_res[:,0]

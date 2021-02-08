@@ -39,6 +39,7 @@ class Trainer:
             train_loss = self.__train()
             val_loss, tp, tn = self.__eval()[0:3]
             train_losses.append(train_loss)
+            val_losses.append(val_loss)
             if self.verbose:
                 print(f'Epoch: {epoch}/{self.epochs} \
                     - loss: {train_loss:.4f} \
@@ -99,7 +100,7 @@ class Trainer:
         self.model.eval()
         outputs = None
         with torch.no_grad():
-            for _, inputs in enumerate(input_loader):
+            for _, (inputs, _)in enumerate(input_loader):
                 output = self.model(inputs.to(self.device))
                 if outputs is None:
                     outputs = output
@@ -136,7 +137,8 @@ def cross_validation(
         print('start evaluate')
         eval_res = trainer.eval()
         eval_res['plot'] = plot_path
-        result.append(eval_res, ignore_index=True)
+        print('Eval Result\n{}'.format(eval_res))
+        result = result.append(eval_res, ignore_index=True)
     filename = 'output/'+datetime.now().strftime('%d-%H_%M_%S') + '-repost.csv'
     result.to_csv(filename)
     return result

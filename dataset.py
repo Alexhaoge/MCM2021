@@ -85,9 +85,10 @@ def get_infer(infer_list: pd.DataFrame, size: int = 299) -> TensorDataset:
         transforms.ToTensor()
     ])
     X = torch.empty((n, 3, size, size))
+    y = torch.empty((n, 1))
     for i, id in enumerate(infer_list['id']):
         X[i] = tran(Image.open('data/subimg/image/'+str(id)+'.png'))
-    return TensorDataset(X)
+    return TensorDataset(X, y)
 
 
 def get_data_list(infer=False):
