@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 from matplotlib.ticker import MaxNLocator
 import pandas as pd
 import torch
+from torch import nn
 import os
 from hashlib import md5
 import time
@@ -72,11 +73,11 @@ class EarlyStopping:
         self.isToStop = False
         self.enable_stop = not no_stop
 
-    def __call__(self, val_loss, model, optimizer, epoch, filename):
+    def __call__(self, val_loss, model, loss_f, optimizer, epoch, filename):
         is_best = bool(val_loss < self.best_loss)
         if is_best:
             self.best_loss = val_loss
-            self.__save_checkpoint(self.best_loss, model,
+            self.__save_checkpoint(self.best_loss, model, loss_f,
                                    optimizer, epoch, filename)
             if self.verbose:
                 print(filename)
@@ -88,9 +89,10 @@ class EarlyStopping:
             if self.counter >= self.patience:
                 self.isToStop = True
 
-    def __save_checkpoint(self, loss, model, optimizer, epoch, filename):
+    def __save_checkpoint(self, loss, model:nn.Module, loss_f:nn.Module, optimizer, epoch, filename):
         state = {'model_state_dict': model.state_dict(),
                  'optimizer_state_dict': optimizer.state_dict(),
+                 'loss_state_dict': loss_f.state_dict(),
                  'epoch': epoch,
                  'loss': loss}
         torch.save(state, filename)

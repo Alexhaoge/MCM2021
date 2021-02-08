@@ -41,7 +41,9 @@ if __name__=='__main__':
         print('successully load infer dataset')
         if args.model != 'False':
             map_location = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-            trainer.model.load_state_dict(torch.load(args.model, map_location))
+            state = torch.load(args.model, map_location)
+            trainer.model.load_state_dict(state['model_state_dict'])
+            trainer.lossf.load_state_dict(state['loss_statie_dict'])
             print('successully load model checkpoints')
         else:
             plot = trainer.fit()
