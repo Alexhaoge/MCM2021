@@ -113,7 +113,8 @@ def cross_validation(
         ds: data.TensorDataset, 
         K: int = 3, batch: int = 16,
         learning_rate: float = 0.001,
-        focal: bool = True
+        focal: bool = True,
+        patience: int = 16
     ):
     print('Total {} images, {} folds, batch size {}, use focal loss: {}'.format(len(ds), K, batch, focal))
     assert isinstance(ds, data.TensorDataset)
@@ -131,7 +132,7 @@ def cross_validation(
                 train = folds[j] if train is None else train+folds[j]
         train_loader = data.DataLoader(train, batch_size=batch, num_workers=4)
         val_loader = data.DataLoader(folds[i], batch_size=batch, num_workers=4)
-        trainer = Trainer(train_loader, val_loader, learning_rate=learning_rate, focal=focal, verbose=True)
+        trainer = Trainer(train_loader, val_loader, learning_rate=learning_rate, focal=focal, verbose=True, patience=patience)
         print('dataloader and trainer created, start fitting')
         plot_path = trainer.fit()
         print('start evaluate')

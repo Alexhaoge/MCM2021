@@ -9,6 +9,9 @@ def get_arguments():
     parser = arg.ArgumentParser()
     parser.add_argument('-c', '--cuda', type=int, default=0, help='The number of GPU to use')
     parser.add_argument('-t', '--times', type=int, default=40, help='image augmentation rate')
+    parser.add_argument('-b', '--batch', type=int, default=16, help='Batch size')
+    parser.add_argument('-p', '--patience', type=int,
+                        default=16, help='Patience for early stopping')
     parser.add_argument('-l', '--lr', type=float, default=0.0001, help='learning rate')
     parser.add_argument('-m', '--model', type=str, default='False', 
                         help='Path to load model. Default "False" means no model')
@@ -31,11 +34,20 @@ if __name__=='__main__':
     train_val = get_total(times=args.times, new=args.new_augment)
     print('successully load train_val dataset')
     if not args.infer:
-        report = cross_validation(train_val, K=args.kfolds, learning_rate=args.lr, focal=args.no_focal)
+        report = cross_validation(
+            train_val, K=args.kfolds, 
+            learning_rate=args.lr, focal=args.no_focal, 
+            patience=args.patience, batch=args.batch
+        )
     else:
         print('Entering Inference Mode...')
-        data_loader = DataLoader(train_val, batch_size=16, shuffle=True, num_workers=4)
-        trainer = Trainer(data_loader, data_loader, learning_rate=args.lr, verbose=True, focal=args.no_focal, no_stop=args.no_stop)
+        data_loader = DataLoader(train_val, batch_size=args.batch, shuffle=True, num_workers=4)
+        trainer = Trainer(
+            data_loader, data_loader, 
+            learning_rate=args.lr, verbose=True, 
+            focal=args.no_focal, no_stop=args.no_stop,
+            patience=args.patience
+        )
         infer_list = get_data_list(True)
         infer_loader = DataLoader(get_infer(infer_list), batch_size=16, shuffle=False, num_workers=4)
         print('successully load infer dataset')
