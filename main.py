@@ -2,10 +2,12 @@ from torch.utils.data.dataloader import DataLoader
 from dataset import get_data_list, get_infer, get_total
 from train import *
 import argparse as arg
+import os
 
 
 def get_arguments():
     parser = arg.ArgumentParser()
+    parser.add_argument('-c', '--cuda', type=int, default=0, help='The number of GPU to use')
     parser.add_argument('-l', '--lr', type=float, default=0.0001)
     parser.add_argument('-m', '--model', type=str, default='False', 
         help='Path to load model. Default "False" means no model')
@@ -19,8 +21,8 @@ def get_arguments():
 
 if __name__=='__main__':
     args = get_arguments()
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(args.cuda)
     if args.model != 'False':
-        import os
         if not os.path.exists(args.model):
             raise FileNotFoundError
     train_val = get_total()
