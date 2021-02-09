@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.30)  9 FEB 2021 09:42
+=======
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.30)  9 FEB 2021 09:36
+>>>>>>> Stashed changes
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -713,10 +717,10 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 
 ]
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 104.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 110.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 17.28pt on input line 104.
+(Font)              scaled to size 17.28pt on input line 110.
 
 (./MCM-ICM_2021_Summary.toc
 
@@ -735,44 +739,50 @@ This may cause the page layout to be inconsistent, however.
 File: ./pictures/dist0.png Graphic file (type bmp)
 <./pictures/dist0.png>
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 132.
+(Font)              scaled to size 10.95pt on input line 138.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 132.
+(Font)              scaled to size 8.0pt on input line 138.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 132.
+(Font)              scaled to size 6.1pt on input line 138.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.95pt on input line 132.
+(Font)              scaled to size 10.95pt on input line 138.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.0pt on input line 132.
+(Font)              scaled to size 8.0pt on input line 138.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.1pt on input line 132.
+(Font)              scaled to size 6.1pt on input line 138.
 File: ./pictures/wikiintro.jpg Graphic file (type bmp)
 <./pictures/wikiintro.jpg>
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
+<<<<<<< Updated upstream
 (Font)              scaled to size 12.0pt on input line 135.
 
 Underfull \hbox (badness 10000) in paragraph at lines 152--154
+=======
+(Font)              scaled to size 12.0pt on input line 141.
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--160
+>>>>>>> Stashed changes
 
  []
 
 [1]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 158.
+               Default added (so using `tbp') on input line 164.
 
 Missing character: There is no ﬀ in font ntx-Regular-tlf-t1!
 
-Overfull \hbox (6.26955pt too wide) in paragraph at lines 159--174
+Overfull \hbox (6.26955pt too wide) in paragraph at lines 165--180
 [][] 
  []
 
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-81.
+87.
 (d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 181.
+(Font)              scaled to size 12.0pt on input line 187.
  [2]
 Missing character: There is no ’ in font ntx-Regular-tlf-t1!
 File: ./pictures/distribute1.png Graphic file (type bmp)
@@ -781,32 +791,36 @@ File: ./pictures/distribute1.png Graphic file (type bmp)
 File: ./pictures/longtitude.png Graphic file (type bmp)
 <./pictures/longtitude.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--252
+Underfull \hbox (badness 10000) in paragraph at lines 256--258
 [][]
  []
 
 File: ./pictures/latitude.png Graphic file (type bmp)
 <./pictures/latitude.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 254--256
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
 [][]
  []
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 265.
+(Font)              scaled to size 8.8pt on input line 271.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 265.
+(Font)              scaled to size 6.6pt on input line 271.
 [4]
 Missing character: There is no 。 in font ntx-Regular-tlf-t1!
 File: ./pictures/problem2.png Graphic file (type bmp)
 <./pictures/problem2.png>
 
-Overfull \hbox (24.35031pt too wide) in paragraph at lines 305--306
+Overfull \hbox (24.35031pt too wide) in paragraph at lines 311--312
  [][][] 
  []
 
 [5] [6]
+<<<<<<< Updated upstream
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 335--346
+=======
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 341--352
+>>>>>>> Stashed changes
 [] 
  []
 
@@ -815,14 +829,14 @@ File: ./pictures/hand1.png Graphic file (type bmp)
 File: ./pictures/head2.png Graphic file (type bmp)
 <./pictures/head2.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--380
+Underfull \hbox (badness 10000) in paragraph at lines 384--386
 [][]
  []
 
 File: ./pictures/head3.png Graphic file (type bmp)
 <./pictures/head3.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 382--384
+Underfull \hbox (badness 10000) in paragraph at lines 388--390
 [][]
  []
 
@@ -832,20 +846,35 @@ File: ./pictures/machine1.png Graphic file (type bmp)
 File: ./pictures/picture_correlogram.png Graphic file (type bmp)
 <./pictures/picture_correlogram.png>
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 404.
+(Font)              scaled to size 10.0pt on input line 410.
 LaTeX Font Info:    Try loading font information for T1+ntxsups on input line 4
-04.
+10.
  (d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/t1ntxsups.fd
 File: t1ntxsups.fd 2015/01/17 v1.0
 )
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+<<<<<<< Updated upstream
 (Font)              scaled to size 10.0pt on input line 404.
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
 (Font)              scaled to size 10.95pt on input line 421.
+=======
+(Font)              scaled to size 10.0pt on input line 410.
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 10.95pt on input line 427.
+>>>>>>> Stashed changes
  [8]
 File: ./pictures/angres.png Graphic file (type bmp)
 <./pictures/angres.png>
 
+<<<<<<< Updated upstream
+=======
+
+LaTeX Warning: Citation `inception' on page 9 undefined on input line 463.
+
+
+LaTeX Warning: Citation `focal' on page 9 undefined on input line 471.
+
+>>>>>>> Stashed changes
 [9] [10]
 File: ./pictures/tsne.png Graphic file (type bmp)
 <./pictures/tsne.png>
@@ -857,62 +886,110 @@ File: ./pictures/pos.png Graphic file (type bmp)
 File: ./pictures/addun.png Graphic file (type bmp)
 <./pictures/addun.png>
 
-Underfull \hbox (badness 2856) in paragraph at lines 572--572
+Underfull \hbox (badness 2856) in paragraph at lines 578--578
 []\T1/ntxtlf/m/n/12 Figure 13: Pos-i-tive
  []
 
 [12] [13] [14]
+<<<<<<< Updated upstream
 Overfull \hbox (29.98758pt too wide) in paragraph at lines 665--666
+=======
+Overfull \hbox (29.98758pt too wide) in paragraph at lines 674--675
+>>>>>>> Stashed changes
 []\T1/ntxtlf/m/n/12 As we use 5-fold method to go through the model, so we can 
 get 5 sam-ples in each case:$\OML/ntxmi/m/it/12 y[]; y[]; y[]; y[]; y[]$
  []
 
-[15] [16] [17
+
+LaTeX Warning: Citation `gscv' on page 15 undefined on input line 681.
+
+[15]
+File: ./pictures/train_cm.png Graphic file (type bmp)
+<./pictures/train_cm.png>
+File: ./pictures/pos.png Graphic file (type bmp)
+<./pictures/pos.png>
+File: ./pictures/addun.png Graphic file (type bmp)
+<./pictures/addun.png>
+ [16] [17] [18
 
 ]
-Overfull \hbox (1.3214pt too wide) in paragraph at lines 732--733
-[]\T1/ntxtlf/m/n/12 Scikit-Video .https://github.com/scikit-video/scikit-video/
-blob/master/skvideo/measure/scene.py. 
- []
-
+Missing character: There is no “ in font ntx-Regular-tlf-t1!
+Missing character: There is no ” in font ntx-Regular-tlf-t1!
 Missing character: There is no – in font ntx-Regular-tlf-t1!
 Missing character: There is no “ in font ntx-Regular-tlf-t1!
 Missing character: There is no ” in font ntx-Regular-tlf-t1!
+<<<<<<< Updated upstream
 [18
+=======
+Missing character: There is no – in font ntx-Regular-tlf-t1!
+Missing character: There is no – in font ntx-Regular-tlf-t1!
+Missing character: There is no “ in font ntx-Regular-tlf-t1!
+Missing character: There is no ” in font ntx-Regular-tlf-t1!
+Missing character: There is no “ in font ntx-Regular-tlf-t1!
+Missing character: There is no ” in font ntx-Regular-tlf-t1!
+Missing character: There is no “ in font ntx-Regular-tlf-t1!
+Missing character: There is no ” in font ntx-Regular-tlf-t1!
+Missing character: There is no – in font ntx-Regular-tlf-t1!
+ [19
+>>>>>>> Stashed changes
 
 ]
 Missing character: There is no ： in font ntx-Regular-tlf-t1!
- (d:/TexLive/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+
+(d:/TexLive/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
+<<<<<<< Updated upstream
 LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 770
+=======
+LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 814
+>>>>>>> Stashed changes
 .
 
 (d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/t1ntxtt.fd
 File: t1ntxtt.fd 2012/04/20 v3.1
 )
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+<<<<<<< Updated upstream
 (Font)              scaled to size 10.95pt on input line 770.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 6.0pt on input line 771.
+=======
+(Font)              scaled to size 10.95pt on input line 814.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.0pt on input line 815.
+>>>>>>> Stashed changes
 Missing character: There is no “ in font t1xtt!
 Missing character: There is no ” in font t1xtt!
 Missing character: There is no ： in font t1xtt!
- [19
+ [20
 
 ]
 (./MCM-ICM_2021_Summary.aux)
 
+<<<<<<< Updated upstream
+=======
+LaTeX Warning: There were undefined references.
+
+
+>>>>>>> Stashed changes
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< Updated upstream
  7073 strings out of 492922
  94312 string characters out of 6133406
  365115 words of memory out of 5000000
  10944 multiletter control sequences out of 15000+600000
+=======
+ 7079 strings out of 492922
+ 94417 string characters out of 6133406
+ 365205 words of memory out of 5000000
+ 10949 multiletter control sequences out of 15000+600000
+>>>>>>> Stashed changes
  87831 words of font info for 119 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  35i,15n,72p,877b,745s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MCM-ICM_2021_Summary.pdf (22 pages).
+Output written on MCM-ICM_2021_Summary.pdf (23 pages).

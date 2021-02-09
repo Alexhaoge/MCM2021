@@ -19,32 +19,33 @@
 \contentsline {subsubsection}{\numberline {4.4.1}Sample Box Annotation}{7}% 
 \contentsline {subsubsection}{\numberline {4.4.2}Data Augmentation}{8}% 
 \contentsline {subsection}{\numberline {4.5}Image Feature Extraction}{9}% 
-\contentsline {subsubsection}{\numberline {4.5.1}Algorithm:Inception V4}{9}% 
-\contentsline {subsubsection}{\numberline {4.5.2}Loss Function:Focal Loss}{10}% 
+\contentsline {subsubsection}{\numberline {4.5.1}Inception V4}{9}% 
+\contentsline {subsubsection}{\numberline {4.5.2}Focal Loss}{10}% 
 \contentsline {subsubsection}{\numberline {4.5.3}K-folds}{10}% 
 \contentsline {subsection}{\numberline {4.6}Text Processing}{10}% 
 \contentsline {subsection}{\numberline {4.7}Text Feature Extraction}{10}% 
 \contentsline {subsection}{\numberline {4.8}Overall Classification}{11}% 
 \contentsline {subsubsection}{\numberline {4.8.1}Feature Combination}{11}% 
-\contentsline {subsubsection}{\numberline {4.8.2}Smote}{11}% 
+\contentsline {subsubsection}{\numberline {4.8.2}SMOTE}{11}% 
 \contentsline {subsubsection}{\numberline {4.8.3}Logistic Regression}{12}% 
 \contentsline {section}{\numberline {5}Task 3: Classify Unverified Reports}{12}% 
 \contentsline {subsection}{\numberline {5.1}Predict Result}{13}% 
 \contentsline {section}{\numberline {6}Task 4: Model Update}{13}% 
 \contentsline {subsection}{\numberline {6.1}Feature Engineering Part}{13}% 
-\contentsline {subsection}{\numberline {6.2}Model Fine-Tuning Part}{14}% 
+\contentsline {subsection}{\numberline {6.2}Model Fine-Tuning}{14}% 
 \contentsline {subsubsection}{\numberline {6.2.1}Fine-Tune}{14}% 
 \contentsline {subsubsection}{\numberline {6.2.2}Online optimizer: FTRL}{14}% 
 \contentsline {subsubsection}{\numberline {6.2.3}Updating Process}{15}% 
-\contentsline {section}{\numberline {7}Task 5: Hornet in Washington State}{15}% 
+\contentsline {section}{\numberline {7}Task 5:Hornet in Washington State}{15}% 
 \contentsline {section}{\numberline {8}Model Evaluation and Testing}{15}% 
 \contentsline {subsection}{\numberline {8.1}Ablation Experiment for Focal Loss }{15}% 
 \contentsline {subsubsection}{\numberline {8.1.1}Model}{15}% 
 \contentsline {subsubsection}{\numberline {8.1.2}Test}{15}% 
-\contentsline {section}{\numberline {9}Strengths, Weaknesses and Improved Method}{15}% 
-\contentsline {subsection}{\numberline {9.1}Strengths}{15}% 
-\contentsline {subsection}{\numberline {9.2}Weaknesses}{16}% 
-\contentsline {subsection}{\numberline {9.3}Improved Method}{16}% 
-\contentsline {section}{Memo}{17}% 
-\contentsline {section}{References}{18}% 
-\contentsline {section}{Appendices}{19}% 
+\contentsline {subsection}{\numberline {8.2} Classification Model Evaluation}{15}% 
+\contentsline {section}{\numberline {9}Strengths, Weaknesses and Improved Method}{16}% 
+\contentsline {subsection}{\numberline {9.1}Strengths}{16}% 
+\contentsline {subsection}{\numberline {9.2}Weaknesses}{17}% 
+\contentsline {subsection}{\numberline {9.3}Improved Method}{17}% 
+\contentsline {section}{Memo}{18}% 
+\contentsline {section}{References}{19}% 
+\contentsline {section}{Appendices}{20}% 

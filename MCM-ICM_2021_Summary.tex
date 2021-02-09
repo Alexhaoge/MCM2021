@@ -66,18 +66,24 @@
 	\large\textbf{  { Data-Driven Model for Asian Hornet Detection with \\ imbalanced and limited dataset}}
 	\end{center}
 \begin{abstract}
-As Asian Hornet invadeds Washington State, the public voluntarily provide information about the insects they have seen or captured which looked  like the hornet. And to analysis the spread of the hornet and distinguish  the insect, we use \textbf{hypothesis testing theory} to prove that the spread of hornet is random and the pest has been eradicated in Washington States. We also set up\textbf{ multimodal classification model} to classify Asian Hornet through the reports.
+As Asian Hornet invadeds Washington State, the public voluntarily provide information about the insects they have seen or captured which looked  like the hornet. And to analysis the spread of the hornet and distinguish  the insect, we use \textbf{hypothesis testing theory} to prove that the spread of hornet is random and the pest has been eradicated gradually in Washington States.  
 
-The classification model uses the image, video, text and other information a record given and is trained by the labelled samples.
+The sighting reports contains images, videos, note texts, spatial-temporal information so it is a multimodal classification. To fully exploit the data set, we propose a \textbf{two-stage multimodal classifier}.
 
 \begin{enumerate}[\bf 1.]
 	
 	
-	\item Firstly, We process the video by \textbf{scene detection}to get \textbf{video keyframes}. And use \textbf{Yolo V5}  to automate \textbf{object box annotation}. We vectorize the text by \textbf{N-grams} coding and code time and position as well.
+	\item In the first stage, we propose different methods to process multimodal inputs and transform them into scaled features.
+	For videos, we convert them to images by  \textbf{key frames extractions} with FFmprobe and FFmpeg tools.
+
+	For images whose backgrounds differ significantly, we crop them into sub-images containing potential hornet only and established an \textbf{Inception v4} network based on images in the reports.The network outputs predictions of class probability, which represents a feature of images. Croping the images require annotated object boxs in each picture, we annotate some samples manually and then train a \textbf{YOLOv5} object detection network to automate the process.
+
+	For spatial-temporal information, we use inverse and exponential function to describe
+the decay of hornet spread over space and time.
 	
-	\item Secondly, we use \textbf{Inception V4} to do hornet image classification and get the probability as a feature and get another feature by \textbf{ridge regression} on text coding result.
+	For texts, we use \textbf{n-gram} and \textbf{ridge regression} to classify the report note and also output the class prediction probablity as a feature for the second stage.
 	
-	\item Finally, we combine all the features with longitude, latitude, date as independent variable to do \textbf{logistic regression} on lable to get the classifier.
+	\item In the second stage, we combine all the features together to use \textbf{logistic regression} as the final classifier. Grid search with cross validation is introduced to tune the model.
 	
 \end{enumerate}
 
@@ -86,7 +92,7 @@ We note that the sample set is quite imbalance for the amount of positive sample
 Also we keep the model to be \textbf{online trainable}, so once a new sample comes, we can adjust the model at once. This is realized by \textbf{ fine-tune} and \textbf{FTRL}.
 
 
-We also test every part of the model is neccessary and propriate by \textbf{Alation Experiment} and other hypothesis testing methods.
+We also test every part of the model is neccessary and propriate by \textbf{Alation Experiment} along with hypothesis test methods.
 
 In conclusion, a robust, transferable,  multimodal, online learning model is established to classify the reports. And test the situation of hornet invasion in statistics methods.
 
@@ -294,7 +300,7 @@ From all the records we get information in quite a lot of forms including \textb
 \end{itemize}
 
 So, we choose \textbf{Multimodal machine learning} to classify the records.
-That means we use all the given information to construct the classification model.
+That means we nearly use all the given information to construct the classification model.
 
 \quad \\
 Another key porblem of this issue is: the positive sample is too small (14 compared with the negative sample number:2096). So the \textbf{sample imbalance} is great. We use \textbf{sample augmentation, focal loss, oversampling} to deal with this problem.
@@ -324,7 +330,7 @@ Video scene detection algorithms generally use the degree of similarity differen
 
 To do this there are mainly two ways:
 \begin{itemize}
-	\item \textbf{scikit-video}\cite{scikitvideo}:it uses the similarity between color and fringe to detect.
+	\item \textbf{scikit-video}:it uses the similarity between color and fringe to detect.
 	\item \textbf{ffmpeg}\cite{ffmpeg}:it chooses the frames considering the compression degree.
 \end{itemize}
 Compared these two methods we use ffmpeg for it's quicker and moere efficient.
@@ -451,18 +457,18 @@ More detailed operation can be seen in the table\ref{augm}, and a result can be 
 
 
 \subsection{Image Feature Extraction}
-\subsubsection{Algorithm:Inception V4}
+\subsubsection{Inception V4}
 After we process all the image and video, we get dozens of pictures. Then we need to extract features from these samples for further classification.
 
-To do this, we choose a \textbf{CNN model} by GoogLeNet: \textbf{Inception V4}. For it is a typical model of image classification with many 1 dimension kernels which make it spends less time and space. And it is the \textbf{SOTA(state-of-the-art) model} in this area.
+To do this, we choose a \textbf{CNN model} which is an improvised version of GoogLeNet: \textbf{Inception V4}\cite{inception}. For it is a typical model of image classification with many 1 dimension kernels which make it spends less time and space. And it is the \textbf{SOTA(state-of-the-art) model} in this area.
 Following is the structure:\\
 \textbf{Input--> Stem-->4$\times$ Inception A-->Reduction-A-->7$\times$ Inception-B-->Reduction-B--> 3$\times$Inception-C-->Average Pooling-->Dropout-->Softmax}
 
 The end of the structure is a softmax layer, in these layer we can get the probability of being a hornet. And we use the probability as a feature.
 
 
-\subsubsection{Loss Function:Focal Loss}
-To deal with the imbalance of sample and make the positive sample easier to be detected, we use \textbf{focal loss} in Inception model \textbf{instead of cross entropy} to give more weight on the loss of small sample loss. Thus the postive model can be distinguished better.	
+\subsubsection{Focal Loss}
+To deal with the imbalance of sample and make the positive sample easier to be detected, we use \textbf{focal loss}\cite{focal} in Inception model \textbf{instead of cross entropy} to give more weight on the loss of small sample loss. Thus the postive model can be distinguished better.	
 \begin{equation}
 Focal\,Loss=-\alpha(1-p)^\gamma log(p)
 \end{equation} 
@@ -515,7 +521,7 @@ And use "Lab Status": Y=1 (if Postive),0(if Negative) as \textbf{dependent varia
 
 
 
-\subsubsection{Smote}
+\subsubsection{SMOTE}
 \begin{figure}[H]
 	\small
 	\label{u=tsne}
@@ -592,7 +598,7 @@ The adjustment of model can be divided into two parts:
 \end{itemize}
 
 
-\subsection{Model Fine-Tuning Part}
+\subsection{Model Fine-Tuning}
 In this part, we adjust the parameter of the model as new sample comes in,and we need to make sure the model is \textbf{robust, time-saving, space-saving},thus it can update on time.
 
 Considering all these we use \textbf{FTRL} and \textbf{Fine-Tune} to do this part.
@@ -605,7 +611,7 @@ There are mainly three classification model in the overall process:
 	\item Logistic Regression for all features
 \end{itemize}
 
-Between these Inception V4 is much more complicated and spends much more time to train.  So for this part, we choose to keep most of the net fixed and just adjust weights of the end of the net: softmax layer. So the \textbf{fine-tune} would make the result easier to converge and save more time.
+Between these Inception V4 is much more complicated and spends much more time to train.  So for this part, we choose to keep most of the net fixed and just adjust weights of the end of the net like Inception C module, also with a small learning rate decayed exponetially. The \textbf{fine-tune} can also make it easier to converge and save more time.
 
 \subsubsection{Online optimizer: FTRL}
 \begin{table}[H]
@@ -642,9 +648,12 @@ For this model can decrease regret($Regret=\sum_{t=1}^T l_t(w_t)-min_{W}\sum_{t=
 After we treat the new report as feature engineering part shows, we send these data to tuning these model and save the model as \ref{overall} shows. And repeat this once a new report comes.
 
 
+\section{Task 5:Hornet in Washington State}
+We need to find evidence that prove the pest has been eradicated.
 
-\section{Task 5: Hornet in Washington State}
+Intuitively, when the pest has been eradicated in the area, the probability of the occurences of positive sample in Washington State equals to zero. To estimate the probability, we calculate the frequency of the positive sample in a year. If this value is small, than we can approximately think the probability of the occurences of positive sample equals to zero.
 
+Utilizing the online learning method incorporated in our framework, We can easily get the result when new data comes in. We set the threshold 0.01, if the frequency calculated by new data is less than 0.01, then we draw the conclusion that the pest has been eradicated in Washington State.
 
 
 \section{Model Evaluation and Testing}
@@ -667,12 +676,45 @@ As we use 5-fold method to go through the model, so we can get 5 samples in each
 By using the two strings data to do T-test, And find out that focal loss is efficient when \textbf{significance is 0.1}.
 
 
+\subsection{	Classification Model Evaluation}
+
+Before classify the unverified reports, we need to find a best model with the lowest generalized loss by changing the hyper-parameters. Since the data set is still small even after data augment, we use K-fold cross-validation to evaluate the performance of our classfiers. After listing out all the candidate hyper-parameters, we use grid search to select best conbination of hyper-parameters. The cross-validation grid search is implemented with Sciki-learn Python Package\cite{gscv}.
+
+We use precision, recall and ROC-AUC(area under receiver operating characteristic curve) as the scoring function for grid search. Recall is used when refitting the model so as to retrieve the best model and hyper-parameter combination from Pareto Frontier.
+
+\begin{figure}[H]
+	\small
+	\centering
+	\begin{minipage}{5cm}
+		\label{prob}
+		\includegraphics[width=5cm,height=4cm]{./pictures/train_cm.png}
+		\caption{Confusion matrix of the original dataset.} 
+	\end{minipage}
+	\begin{minipage}{4cm}
+		\includegraphics[width=4cm,height=4cm]{./pictures/pos.png}
+		\caption{ROC Curve}
+	\end{minipage}
+	\begin{minipage}{4cm}
+		\includegraphics[width=4cm,height=4cm]{./pictures/addun.png}
+		\caption{Precision-Recall Curve}
+	\end{minipage}
+\end{figure}
+
+
+As we can see in the Confusion matrix, "True Negative"(TN) decreases apparently, thus make the model more efficient. For it is of great importance to have low TN,or we would be more likely to miss positive sample and can't alarm the public on time.
+
+In the meantime,we also gaurantee the FP number is relatively small by using multiple indexes to choose hyper-parameters .
+ 
+Average Precision(AP) is small as it is shown in precision-recll and that is why we request small "True Negative"(TN) in the model.From confusion matrix abouve,the number of "False Positive"(FP) is higher than "True Positive"(TP) for we use orignal dataset to calculate metrics.
+
+In real situation,the model well be more effective.For the FP sample would face re-check by the expert,and our job decreases 2083 samples into 120 samples as the most probable positive sample.It greatly reduced the burden of manpower check.
+
 
 \section{Strengths, Weaknesses and Improved Method}
 \subsection{Strengths}
 \textbf{Strength 1}: The classification model is a two-stage, using separate networks for different features in multimodal data sets. So:
 \begin{itemize}
-	\item  It is flexiable and transferable, (Like object box annotation and image calssification, we can change another model and guarantee the result is end to end as well), also if we use independent outside dataset, like the AGH dataset from Biology Department or introduce industrial-grade model such as GPT in NLP area to handle notes, the model also works.
+	\item  It is flexiable and transferable, (Like object box annotation and image calssification, we can change another model and guarantee the result is end to end as well), also if we use independent outside dataset, like the AGH dataset from Biology Department or introduce industrial-grade model such as GPT-3 in NLP area to handle notes, the model still can work.
 	\item  The model is decoupling, so when the image or the text is missing, it can still do classification. So the model is quite robust.
 \end{itemize}
 
@@ -725,16 +767,17 @@ In image classification part, we didn't consider the environment(like cave or ho
 \clearpage
 \begin{thebibliography}{99}
 	\addcontentsline{toc}{section}{References}  %引用部分标题（"Refenrence"）的重命名
-	\bibitem{fb}Facebook.Asian Giant Hornet Watch.https://www.facebook.com/groups/hornets.
-	\bibitem{website}Washington State Department of Agriculture. 2020 Asian Giant Hornet Public 
-	Dashboard. https://agr.wa.gov/departments/insects-pests-and-weeds/insects/hornets/data.
-	\bibitem{wiki}Wikipedia.Asian Giant Hornet. https://en.wikipedia.org/wiki/Asian\_giant\_hornet.
-	\bibitem{scikitvideo}Scikit-Video .https://github.com/scikit-video/scikit-video/blob/master/skvideo/measure/scene.py.
+	\bibitem{fb}Facebook. Asian Giant Hornet Watch. https://www.facebook.com/groups/hornets.
+	\bibitem{website}Washington State Department of Agriculture. 2020 Asian Giant Hornet Public Dashboard. https://agr.wa.gov/departments/insects-pests-and-weeds/insects/hornets/data.
+	\bibitem{wiki}Wikipedia.Asian Giant Hornet. https://en.wikipedia.org/wiki/Asian\_giant\_hornet.\
 	\bibitem{ffmpeg}ffmpeg . https://ffmpeg.org/ffmpeg-filters.html\#select\_002c-aselect.
-	\bibitem{Yolo}YoloV5 . https://github.com/topics/yolov5
-	\bibitem{Smote}van der Maaten, L.J.P.; Hinton, G.E. Visualizing High-Dimensional Data Using t-SNE. Journal of Machine Learning Research 9:2579-2605, 2008.
+	\bibitem{Yolo}Kuznetsova, Anna, et al. “Detecting Apples in Orchards Using YOLOv3 and YOLOv5 in General and Close-Up Images.” International Symposium on Neural Networks, 2020, pp. 233–243.
+	\bibitem{inception}Szegedy, Christian, et al. "Inception-v4, inception-resnet and the impact of residual connections on learning." Proceedings of the AAAI Conference on Artificial Intelligence. Vol. 31. No. 1. 2017.
+	\bibitem{focal}Lin, Tsung-Yi, et al. “Focal Loss for Dense Object Detection.” 2017 IEEE International Conference on Computer Vision (ICCV), 2017, pp. 2999–3007.
+	\bibitem{Smote}Van der Maaten, Laurens, and Geoffrey Hinton. "Visualizing data using t-SNE." Journal of machine learning research 9.11 (2008).
 	\bibitem{Smote1}Haibo He, Yang Bai, Edwardo A Garcia, and Shutao Li. Adasyn: adaptive synthetic sampling approach for imbalanced learning. In 2008 IEEE International Joint Conference on Neural Networks (IEEE World Congress on Computational Intelligence), 1322–1328. IEEE, 2008.
 	\bibitem{Smote3}N. V. Chawla, K. W. Bowyer, L. O.Hall, W. P. Kegelmeyer, “SMOTE: synthetic minority over-sampling technique,” Journal of artificial intelligence research, 321-357, 2002.
+	\bibitem{gscv}Pedregosa, Fabian, et al. “Scikit-Learn: Machine Learning in Python.” Journal of Machine Learning Research, vol. 12, no. 85, 2011, pp. 2825–2830.
 \end{thebibliography}
 
 \clearpage
