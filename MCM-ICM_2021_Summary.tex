@@ -529,17 +529,17 @@ As is shown in Figure\protect\ref{u=tsne},all these features satisfied \textbf{M
 
 The only problem is that the positive samples are too scarce, so we need to over-sample them. The most intuitive method is randomly repeat those positive samples with techniques like Bootstrap and this will not change the space distribution of them, but actually they are too concentrated on one point and our classifier may lay down the border anywhere between two clusters, which is not desired. What's more, slight noices will prevent over-fitting and help increase the robustness of our model.
 
-we introduce \textbf{ADASYN}(Adaptive Synthetic Sampling)for over-sampling for we want more noise to train the model. It focuses on generating minority class sample near the border of the minority class and majority class. In this problem, it can strengthen the border near positive and negative samples.
+we introduce SMOTE(Synthetic Minority Oversampling Technique)\cite{Smote1} and \textbf{ADASYN}(Adaptive Synthetic Sampling)for over-sampling for we want more noise to train the model. It focuses on generating minority class sample near the border of the minority class and majority class. In this problem, it can strengthen the border near positive and negative samples.
 
 
-Smote algorithm contains three steps:
+SMOTE algorithm contains three steps:
 \begin{enumerate}
 	\item For everyone in the positive sample, get its k-neighbor positive points(by Euclidean distance )
 	\item Choose sampling ratio n. For each positive sample x, selected n points from the k points in the first step for $x_k,k=1,2,...,n$. 
 	\item: For each $x_n$, create new point: $x_{new}=x+\epsilon(x-x_n), where \epsilon \sim U(0,1)$
 \end{enumerate}
 
-Then, we get new points added to our samples.
+Then, we get new points added to our samples. ADASYN is an improvised algorithm based on SMOTE. More details of this method are accessible in \cite{Smote3}
 
 \subsubsection{Logistic Regression}
 We conduct \textbf{logistic regression} to evaluate all the features and set up a model to classify the records. And the model of logistic regression is showed below:
@@ -734,7 +734,6 @@ In image classification part, we didn't consider the environment(like cave or ho
 	\bibitem{Yolo}YoloV5 . https://github.com/topics/yolov5
 	\bibitem{Smote}van der Maaten, L.J.P.; Hinton, G.E. Visualizing High-Dimensional Data Using t-SNE. Journal of Machine Learning Research 9:2579-2605, 2008.
 	\bibitem{Smote1}Haibo He, Yang Bai, Edwardo A Garcia, and Shutao Li. Adasyn: adaptive synthetic sampling approach for imbalanced learning. In 2008 IEEE International Joint Conference on Neural Networks (IEEE World Congress on Computational Intelligence), 1322–1328. IEEE, 2008.
-	\bibitem{Smote2}H. Han, W. Wen-Yuan, M. Bing-Huan, “Borderline-SMOTE: a new over-sampling method in imbalanced data sets learning,” Advances in intelligent computing, 878-887, 2005.
 	\bibitem{Smote3}N. V. Chawla, K. W. Bowyer, L. O.Hall, W. P. Kegelmeyer, “SMOTE: synthetic minority over-sampling technique,” Journal of artificial intelligence research, 321-357, 2002.
 \end{thebibliography}
 
@@ -769,13 +768,7 @@ In image classification part, we didn't consider the environment(like cave or ho
 		extendedchars=false %解决代码跨页时，章节标题，页眉等汉字不显示的问题  
 	}
 	\begin{lstlisting}
-	# Scene Detection
-	ffmpeg -i “video name” -filter:v "select='gt(scene,0.1)',showinfo" -f null - 2>&1
-	ffmpeg -i 666051400.mp4 -filter:v "select='gt(scene,0.1)',showinfo" -f null - 2>&1
-	#ues ffprobe get IPB time:
-	ffprobe -i 666051400.mp4 -v quiet -select_streams v -show_entries frame=pkt_pts_time,pict_type
-	#transform IPB to jpg：
-	ffmpeg -i 666051400.mp4 -vf "select=eq(pict_type\,I)"  -vsync vfr -qscale:v 2 -f image2 ./%08d.jpg
+	
 	\end{lstlisting}
 	
 	
