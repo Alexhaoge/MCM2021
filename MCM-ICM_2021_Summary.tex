@@ -13,7 +13,6 @@
 % and replace 1111111 with your Team Control Number
 \newcommand{\Problem}{C}
 \newcommand{\Team}{2103994}
-\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{newtxtext}
@@ -67,15 +66,33 @@
 	\large\textbf{  { Data-Driven Model for Asian Hornet Detection with \\ imbalanced and limited dataset}}
 	\end{center}
 \begin{abstract}
+As Asian Hornet invadeds Washington State, the public voluntarily provide information about the insects they have seen or captured which looked  like the hornet. And to analysis the spread of the hornet and distinguish  the insect, we use \textbf{hypothesis testing theory} to prove that the spread of hornet is random and the pest has been eradicated in Washington States. We also set up\textbf{ multimodal classification model} to classify Asian Hornet through the reports.
 
-To address the above-mentioned challenge, we propose.... Then a XX model is proposed as ....
-We propose ... based on .... Then we employ an XX model as .... The results show .... Lastly, we analyze ... to find ....
+The classification model uses the image, video, text and other information a record given and is trained by the labelled samples.
 
-According to our empirical results, we propose some confident (sales) strategies and recommendations for .... We write a letter to (the marketing director of Sunshine Company) to summarize our analysis and results, together with our recommendations./ to assist with ..., we propose ...
+\begin{enumerate}[\bf 1.]
+	
+	
+	\item Firstly, We process the video by \textbf{scene detection}to get \textbf{video keyframes}. And use \textbf{Yolo V5}  to automate \textbf{object box annotation}. We vectorize the text by \textbf{N-grams} coding and code time and position as well.
+	
+	\item Secondly, we use \textbf{Inception V4} to do hornet image classification and get the probability as a feature and get another feature by \textbf{ridge regression} on text coding result.
+	
+	\item Finally, we combine all the features with longitude, latitude, date as independent variable to do \textbf{logistic regression} on lable to get the classifier.
+	
+\end{enumerate}
 
-Our framework shows a strong accuracy, robustness. It can be easily implemented to other data with our source codes.
+We note that the sample set is quite imbalance for the amount of positive sample is much smaller than positive sample, so we use \textbf{data augmentation} when deal with images, and use \textbf{focal loss} as loss function to train Inception net. We also enhance sample by using \textbf{over-sampling} algorithm \textbf{ADASNY}.
 
-\textbf{Keywords}: ext-Based Measure, Informative Text Selection, Reputation Quantification, Sales Strategy Formation
+Also we keep the model to be \textbf{online trainable}, so once a new sample comes, we can adjust the model at once. This is realized by \textbf{ fine-tune} and \textbf{FTRL}.
+
+
+We also test every part of the model is neccessary and propriate by \textbf{Alation Experiment} and other hypothesis testing methods.
+
+In conclusion, a robust, transferable,  multimodal, online learning model is established to classify the reports. And test the situation of hornet invasion in statistics methods.
+
+
+\textbf{Keywords}:  Multimodal Classification, Hornet Detection, Imbalanced sample, Online learning
+
 \end{abstract}
 % to here
 %%%%%%%%%%% End Summary %%%%%%%%%%%
@@ -103,7 +120,7 @@ Vespa mandarinia is the largest species of hornet in the world, and the occurren
 
 In September 2019, a colony of Vespa mandarinia (also known as the Asian giant hornet) was discovered on Vancouver Island in British Columbia, Canada. The nest was quickly destroyed, but the news of the event spread rapidly throughout the area. 
 
-From the first report of Asian giant hornets received, the public has played a critical role in the detection of Asian giant hornets in the Pacific Northwest. Washington State Department of Agriculture(WSDA)  has set up platforms\upcite{fb} to collect informations from the  public and set traps to get hornets.  
+From the first report of Asian giant hornets received, the public has played a critical role in the detection of Asian giant hornets in the Pacific Northwest. Washington State Department of Agriculture(WSDA)  has set up platforms\cite{fb} to collect informations from the  public and set traps to get hornets.  
  
 \subsubsection{Asian Giant Hornet  }
 \begin{figure}[!htbp]
@@ -111,11 +128,11 @@ From the first report of Asian giant hornets received, the public has played a c
 	\centering
 	\begin{minipage}{8cm}
 		\includegraphics[width=7cm,height=7cm]{./pictures/dist0.png}
-		\caption{ Asian Giant Hornet Detections\upcite{website}}\label{nt}
+		\caption{ Asian Giant Hornet Detections\cite{website}}\label{nt}
 	\end{minipage}
 	\begin{minipage}{8cm}
 		\includegraphics[width=7cm,height=7cm]{./pictures/wikiintro.jpg}
-		\caption{\emph{Vespa mandarinia}\upcite{wiki}}\label{nt}
+		\caption{\emph{Vespa mandarinia}\cite{wiki}}\label{nt}
 	\end{minipage}
 	
 \end{figure}
@@ -138,37 +155,35 @@ Usually to find food, the Asian giant hornet goes only 0.5 to 1.25 miles (1-2 ki
 \textbf{Comparision with Other Species}
 
 While Asian giant hornets do not occur in eastern North America, there are a number of other large wasps that may be confused for them.Here introduce some species alike and there distinctions.
-\begin{table}  
-	\caption{Similar Species}  
-	\begin{center}  
-		\begin{tabular}{|p{5cm}<{\centering}|p{7cm}<{\centering}| p{5cm}<{\centering}|}  
-			\hline  
-			Species & Similarity & Dinstinguish  \\ \hline  
-			Asian Giant Hornet& around 1.5 inches, yellow head, black belly, live on the ground or lower than 6 foots&\\ \hline  
-			VespaCabro & size, shape, color are simlilar &small differences on face and chest, live higher than 6 foots \\  
-			\hline 
-			VespulaSquamosa & only the queen may be confused in spring  &much smaller in size \\  
-			\hline  
-			cicada killers & simliar size  &no yellow in head and belly \\  
-			\hline
-			Dolichovespula Maculata &  &small size, in the color of black and white, live on the tree or reef\\  
-			\hline
-		\end{tabular}  
-	\end{center}  
+\begin{table}[]
+\begin{tabular}{|l|l|l|}
+\hline
+Species         & Similarity                               & Distinguish                 \\ \hline
+Asian Giant Hornet &
+  \begin{tabular}[c]{@{}l@{}}around 1.5 inches, yellow head,\\ black belly, live on the ground \\ or lower than 6 feet\end{tabular} &
+   \\ \hline
+VespaCabro &
+  size, shape, color are simlilar &
+  \begin{tabular}[c]{@{}l@{}}small diﬀerences on face and\\ chest, live higher than 6 feet\end{tabular} \\ \hline
+VespulaSquamosa & only the queen may be confused in spring & much smaller in size        \\ \hline
+cicada killers  & simliar size                             & no yellow in head and belly \\ \hline
+Dolichovespula Maculata &
+   &
+  \begin{tabular}[c]{@{}l@{}}small size, in the color of\\ black and white, live on the \\ tree or reef\end{tabular} \\ \hline
+\end{tabular}
+\caption{Comparison of Similar Species}
+\label{tab:Similar Species}
 \end{table}
-
-
 
 
 \subsection{Our work}
 \begin{itemize}
-	\item Firstly, we try to predict the spread of hornet, but just find that the spread is not regulated.
+	\item Firstly, we try to predict the spread of hornet, but just find that the spread is not regulated and can be regarded as random walk by examine the independency of report locations.
 	\item Secondly, from all the information WSDA recieved, several confirmed sightings of the pest have occurred in neighboring Washington State, as well as a multitude of mistaken sightings. So we construct a model to distinguish whether or not the observed object in one sighting record is Asian Giant Hornet.
-	\item Then, we use this model into unverified records to figure out the identity of the object.
-	\item And we find methods to update the model as new data comes in.
+	\item Then, we use this model to classify unverified records.
+	\item After that, we discuss methods to update the model as new data comes in.
 	\item Finally, we use the result to verify that the hornet in Washington State has been readicated.
 \end{itemize}
-
 
 
 \section{Assumptions}
@@ -177,11 +192,11 @@ To simplify our model and eliminate the complexity, we make the following main a
 \begin{enumerate}[\bfseries 1.]
 	\item The first arrival of Asian Giant Hornet in the United States is the first found in Washington State (time: 2019/9/19; latitude: 49.149394; longitude: -123.943134)
 	\item Under the control of authoritied concerned, the distance and time of the spread of hornet are limited.
+	\item For unverified, unprocessed and potential sightings, some of their features are similar to the verified ones', so we can build a data-driven model.
 \end{enumerate}
 
 
-
-\section{Task 1:The Spread of Hornet}
+\section{Task 1: The Spread of Hornet}
 
 To decide whether the spread of hornets can be predicted based the collected. We introduce the hypothesis test theory in statistics to test whether the time series of the longitude and the latitude is a white noise sequence (random sequence) or not. In \textbf{theory of time series analysis}, the Ljung-Box test is a test designed for judge the randomness of a time series data. It rejects  the null analysis if the data isn’t random. In that case, we can perform some methods of time series analysis for prediction. If it accepts the null analysis, then we can draw the conclusion that this sequence is random and can not be used for prediction.
 
@@ -343,7 +358,7 @@ to make the information for efficient thus improve classification's accuracy.
 \subsubsection{Sample Box Annotation}
 In many pictures, the insect is hidden in the environment such as flowers and woods and the size of the insect is small.
 
-So it's hard to distinguish the insect through these pictures.To deal with these we try to annotate the sample box .For the amount of pictures is large, we do this by  \textbf{YoloV5}\cite{Yolo}, an auto-annotate algorithm:
+So it's hard to distinguish the insect through these pictures.To deal with these we try to annotate the object box .For the amount of pictures is large, we do this by  \textbf{YoloV5}\cite{Yolo}, an auto-annotate algorithm:
 \begin{itemize}
 	\item  First we annotate the sample box by hand to get 750 picture as trian data.
 	\item  Then we use YoloV5 to deal with more than 2000 pictures.
@@ -379,19 +394,19 @@ And as we can see in \ref{box}, the sizes of sample boxes are not uniform, so it
 	\end{minipage}
 	\begin{minipage}{7cm}
 		\includegraphics[width=7cm,height=6cm]{./pictures/picture_correlogram.png}
-		\caption{the size and position sample box\protect\footnotemark[1]}
+		\caption{the size and position of object boxs\protect\footnotemark[1]}
 		\label{box}
 	\end{minipage}
 \end{figure}
 
 
 
-\footnotetext[1]{x, y reprsent middle point of the sample box,width and hight describe the shape. }
+\footnotetext[1]{x, y reprsent middle point of the object box,width and hight describe the shape. }
 
 \subsubsection{Data Augmentation}
 For the number of positive sample is too small, we use \textbf{data augmentation} to create more pictures from one positive sample through photo change. Thus we can get more information about how Asian Giant Hornet looks like.
 
-As \ref{box} shows, the size and shape of the sample box is not regular(The center of the sample frame is normally distributed and the height and width are skewed), so we choose to do the change randomly, that's to say the angle we rotate or the size we cut and other parameter are choosen randomly, so we can get more useful information.
+As \ref{box} shows, the size and shape of the object box is not regular(The center of the sample frame is normally distributed and the height and width are skewed), so we choose to do the change randomly, that's to say the angle we rotate or the size we cut and other parameter are choosen randomly, so we can get more useful information.
 
 Through this, we augment the positive sample(combined with the pictures provided by WSDA 26) 20 times and get 520 pictures.
 
@@ -572,7 +587,7 @@ The adjustment of model can be divided into two parts:
 \begin{itemize}
 	\item \textbf{Longitude ,Latitude and Date}:For these three index we only need to do: $\hat{x}=e^{-(x-x_{1^{st}positive})},x=longitude/latitude/date$. Then, we can get coding result.
 	\item \textbf{Video and Image}: For video,we only need to do the same: scene detection and video keyframes to transfer a video into some images. Then, for
-	\item \textbf{Yolo} has trained well and can get sample box automatically, and when the "Lab Status" is postive, it will be augmented as well.
+	\item \textbf{Yolo} has trained well and can get object box automatically, and when the "Lab Status" is postive, it will be augmented as well.
 	\item \textbf{Text}To deal with the notes,when we do \textbf{n-grams}, we have set up dictionary to the coding to the most frequent 3000 words and phrases. So when new sentence comes in, we only need to code the sentence by the coding dictionary.
 \end{itemize}
 
@@ -657,7 +672,7 @@ By using the two strings data to do T-test, And find out that focal loss is effi
 \subsection{Strengths}
 \textbf{Strength 1}: The classification model is a two-stage, using separate networks for different features in multimodal data sets. So:
 \begin{itemize}
-	\item  It is flexiable and transferable, (Like sample box annotation and image calssification, we can change another model and guarantee the result is end to end as well), also if we use independent outside dataset, like the AGH dataset from Biology Department or introduce industrial-grade model such as GPT in NLP area to handle notes, the model also works.
+	\item  It is flexiable and transferable, (Like object box annotation and image calssification, we can change another model and guarantee the result is end to end as well), also if we use independent outside dataset, like the AGH dataset from Biology Department or introduce industrial-grade model such as GPT in NLP area to handle notes, the model also works.
 	\item  The model is decoupling, so when the image or the text is missing, it can still do classification. So the model is quite robust.
 \end{itemize}
 
@@ -668,16 +683,7 @@ By using the two strings data to do T-test, And find out that focal loss is effi
 
 \subsection{Improved Method}
 \textbf{Take the environment of image into consideration}
-In image classification, we did't consider the environment(like cave or hornet nest,etc).The attachment introduces that the nest of Asian Gaint Hornet is special,and they live in the area near the ground and don't like to go around the flowers as well.So we may excavate this with more background information.
-
-\paragraph{Rule I}
-\emph{High temperature and large flux can make the water attach the optimum temperature earlier,
-	meanwhile it may cause uneven temperature and waste of water.}
-\paragraph{Rule II}
-\emph{Evenness comes from continuous inflow with appropriate temperature, a little higher than the
-	optimum temperature in usual.}
-\paragraph{Rule III}
-\emph{The best strategy to have an excellent bath is to heat up the water before it cool down.}
+In image classification part, we didn't consider the environment(like cave or hornet nest,etc). The attachment of the problem introduces that the nest of Asian Gaint Hornet is special, and they live in the area near the ground and don't like to go around the flowers as well.So we may excavate this with more background information.
 
 \clearpage
 \section*{Memo}\addcontentsline{toc}{section}{Memo}

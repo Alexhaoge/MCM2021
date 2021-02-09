@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.30)  9 FEB 2021 06:11
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.30)  9 FEB 2021 08:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -633,4 +633,321 @@ File: ot1ntxtlf.fd 2015/01/17 v1.0 font definition file for OT1/ntx/tlf
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 12.0pt on input line 55.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size
+(Font)              scaled to size 8.8pt on input line 55.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.6pt on input line 55.
+LaTeX Font Info:    Try loading font information for U+msa on input line 55.
+
+(d:/TexLive/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 55.
+
+(d:/TexLive/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 55.
+
+
+(d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/untxmia.fd
+File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
+)
+LaTeX Font Info:    Try loading font information for U+ntxsym on input line 55.
+
+
+(d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/untxsym.fd
+File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
+)
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 55.
+
+
+(d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/untxsyc.fd
+File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
+)
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 55.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 8.8pt on input line 55.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 6.6pt on input line 55.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 55.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 55.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 17.28pt on input line 55.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 66.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 66.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 14.4pt on input line 66.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 68.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 68.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 68.
+ [1
+
+]
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <17.28> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 104.
+
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 17.28pt on input line 104.
+
+(./MCM-ICM_2021_Summary.toc
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+Make it at least 14.49998pt.
+We now make it that large for the rest of the document.
+This may cause the page layout to be inconsistent, however.
+
+[2
+
+])
+\tf@toc=\write3
+\openout3 = `MCM-ICM_2021_Summary.toc'.
+
+ [3]
+
+LaTeX Warning: Citation `fb' on page 1 undefined on input line 123.
+
+File: ./pictures/dist0.png Graphic file (type bmp)
+<./pictures/dist0.png>
+
+LaTeX Warning: Citation `website' on page 1 undefined on input line 131.
+
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 132.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 132.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.1pt on input line 132.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 132.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 8.0pt on input line 132.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 6.1pt on input line 132.
+File: ./pictures/wikiintro.jpg Graphic file (type bmp)
+<./pictures/wikiintro.jpg>
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
+(Font)              scaled to size 12.0pt on input line 135.
+
+LaTeX Warning: Citation `wiki' on page 1 undefined on input line 135.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--154
+
+ []
+
+[1]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 158.
+
+Missing character: There is no ﬀ in font ntx-Regular-tlf-t1!
+
+Overfull \hbox (6.26955pt too wide) in paragraph at lines 159--174
+[][] 
+ []
+
+LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
+81.
+(d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
+File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
+)
+LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 181.
+ [2]
+Missing character: There is no ’ in font ntx-Regular-tlf-t1!
+File: ./pictures/distribute1.png Graphic file (type bmp)
+<./pictures/distribute1.png>
+ [3]
+File: ./pictures/longtitude.png Graphic file (type bmp)
+<./pictures/longtitude.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--252
+[][]
+ []
+
+File: ./pictures/latitude.png Graphic file (type bmp)
+<./pictures/latitude.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--256
+[][]
+ []
+
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.8pt on input line 265.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.6pt on input line 265.
+[4]
+Missing character: There is no 。 in font ntx-Regular-tlf-t1!
+File: ./pictures/problem2.png Graphic file (type bmp)
+<./pictures/problem2.png>
+
+Overfull \hbox (24.35031pt too wide) in paragraph at lines 305--306
+ [][][] 
+ []
+
+[5]
+
+LaTeX Warning: Citation `scikitvideo' on page 6 undefined on input line 327.
+
+
+LaTeX Warning: Citation `ffmpeg' on page 6 undefined on input line 328.
+
+[6]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 335--346
+[] 
+ []
+
+
+LaTeX Warning: Citation `Yolo' on page 7 undefined on input line 361.
+
+
+LaTeX Warning: Reference `box' on page 7 undefined on input line 368.
+
+File: ./pictures/hand1.png Graphic file (type bmp)
+<./pictures/hand1.png>
+File: ./pictures/head2.png Graphic file (type bmp)
+<./pictures/head2.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 378--380
+[][]
+ []
+
+File: ./pictures/head3.png Graphic file (type bmp)
+<./pictures/head3.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 382--384
+[][]
+ []
+
+[7]
+File: ./pictures/machine1.png Graphic file (type bmp)
+<./pictures/machine1.png>
+File: ./pictures/picture_correlogram.png Graphic file (type bmp)
+<./pictures/picture_correlogram.png>
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 404.
+LaTeX Font Info:    Try loading font information for T1+ntxsups on input line 4
+04.
+ (d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/t1ntxsups.fd
+File: t1ntxsups.fd 2015/01/17 v1.0
+)
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 10.0pt on input line 404.
+
+
+LaTeX Warning: Reference `box' on page 8 undefined on input line 409.
+
+
+LaTeX Warning: Reference `augm' on page 8 undefined on input line 413.
+
+
+LaTeX Warning: Reference `augres' on page 8 undefined on input line 413.
+
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 10.95pt on input line 421.
+[8]
+File: ./pictures/angres.png Graphic file (type bmp)
+<./pictures/angres.png>
+ [9] [10]
+File: ./pictures/tsne.png Graphic file (type bmp)
+<./pictures/tsne.png>
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 526.
+
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 526.
+
+
+LaTeX Warning: Citation `Smote' on page 11 undefined on input line 526.
+
+
+LaTeX Warning: Reference `u=tsne' on page 11 undefined on input line 528.
+
+[11]
+File: ./pictures/prob.png Graphic file (type bmp)
+<./pictures/prob.png>
+File: ./pictures/pos.png Graphic file (type bmp)
+<./pictures/pos.png>
+File: ./pictures/addun.png Graphic file (type bmp)
+<./pictures/addun.png>
+
+Underfull \hbox (badness 2856) in paragraph at lines 572--572
+[]\T1/ntxtlf/m/n/12 Figure 13: Pos-i-tive
+ []
+
+[12]
+
+LaTeX Warning: Reference `prob' on page 13 undefined on input line 575.
+
+[13]
+
+LaTeX Warning: Reference `overall' on page 14 undefined on input line 642.
+
+[14]
+Overfull \hbox (29.98758pt too wide) in paragraph at lines 665--666
+[]\T1/ntxtlf/m/n/12 As we use 5-fold method to go through the model, so we can 
+get 5 sam-ples in each case:$\OML/ntxmi/m/it/12 y[]; y[]; y[]; y[]; y[]$
+ []
+
+[15] [16] [17
+
+]
+Overfull \hbox (1.3214pt too wide) in paragraph at lines 732--733
+[]\T1/ntxtlf/m/n/12 Scikit-Video .https://github.com/scikit-video/scikit-video/
+blob/master/skvideo/measure/scene.py. 
+ []
+
+Missing character: There is no – in font ntx-Regular-tlf-t1!
+Missing character: There is no “ in font ntx-Regular-tlf-t1!
+Missing character: There is no ” in font ntx-Regular-tlf-t1!
+Missing character: There is no “ in font ntx-Regular-tlf-t1!
+Missing character: There is no ” in font ntx-Regular-tlf-t1!
+[18
+
+]
+Missing character: There is no ： in font ntx-Regular-tlf-t1!
+ (d:/TexLive/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/02/27 1.8b listings language file
+)
+LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 771
+.
+
+(d:/TexLive/texlive/2019/texmf-dist/tex/latex/newtx/t1ntxtt.fd
+File: t1ntxtt.fd 2012/04/20 v3.1
+)
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 10.95pt on input line 771.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.0pt on input line 772.
+Missing character: There is no “ in font t1xtt!
+Missing character: There is no ” in font t1xtt!
+Missing character: There is no ： in font t1xtt!
+ [19
+
+]
+(./MCM-ICM_2021_Summary.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 7075 strings out of 492922
+ 94345 string characters out of 6133406
+ 364998 words of memory out of 5000000
+ 10946 multiletter control sequences out of 15000+600000
+ 90631 words of font info for 120 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 35i,15n,72p,877b,745s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on MCM-ICM_2021_Summary.pdf (22 pages).
